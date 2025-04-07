@@ -7,30 +7,27 @@ Copy
 Edit
 git clone https://github.com/heroku/node-js-sample
 cd node-js-sample
+
 ✅ Step 2: Create a Dockerfile
 Create a file named Dockerfile:
-
 Dockerfile
 Copy
 Edit
 # Use official Node.js image
 FROM node:16
-
 # Set working directory inside the container
 WORKDIR /app
-
 # Copy package.json and install dependencies
 COPY package*.json ./
 RUN npm install
-
 # Copy the rest of the app
 COPY . .
-
 # App runs on port 5000
 EXPOSE 5000
-
 # Command to run the app
 CMD ["node", "index.js"]
+
+
 ✅ Step 3: Build and Run Docker Container
 bash
 Copy
@@ -39,19 +36,15 @@ docker build -t my-node-app .
 docker run -p 5000:5000 my-node-app
 Test in browser: http://localhost:5000
 
+
 ✅ Step 4: Set Up GitHub Actions for CI/CD
 Create the folder and workflow file:
 
-bash
-Copy
-Edit
 mkdir -p .github/workflows
 touch .github/workflows/main.yml
 Add the following to .github/workflows/main.yml:
 
 yaml
-Copy
-Edit
 name: CI/CD Pipeline
 
 on:
@@ -81,6 +74,8 @@ jobs:
         context: .
         push: true
         tags: <your-dockerhub-username>/nodejs-demo-app:latest
+
+
 ✅ Step 5: Add DockerHub Credentials to GitHub Secrets
 Go to your GitHub repository:
 
