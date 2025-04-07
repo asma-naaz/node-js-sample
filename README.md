@@ -1,39 +1,35 @@
 🚀 Automate Code Deployment Using CI/CD Pipeline (GitHub Actions)
+
 Tools Used: GitHub, GitHub Actions, Docker
 
 ✅ Step 1: Clone the Sample Node.js App
-bash
-Copy
-Edit
+
 git clone https://github.com/heroku/node-js-sample
 cd node-js-sample
 
 ✅ Step 2: Create a Dockerfile
-Create a file named Dockerfile:
-Dockerfile
-Copy
-Edit
- # Use official Node.js image
+Create a file named Dockerfile
+
 FROM node:16
- # Set working directory inside the container
+
 WORKDIR /app
- # Copy package.json and install dependencies
+
 COPY package*.json ./
+
 RUN npm install
- # Copy the rest of the app
+
 COPY . .
- # App runs on port 5000
+
 EXPOSE 5000
- # Command to run the app
+
 CMD ["node", "index.js"]
 
 
 ✅ Step 3: Build and Run Docker Container
-bash
-Copy
-Edit
+
 docker build -t my-node-app .
 docker run -p 5000:5000 my-node-app
+
 Test in browser: http://localhost:5000
 
 
@@ -80,16 +76,15 @@ jobs:
 Go to your GitHub repository:
 
 Click Settings > Secrets and variables > Actions
-
 Click "New repository secret" and add:
 
 Name	Value
 DOCKER_USERNAME	Your DockerHub username
 DOCKER_PASSWORD	Your DockerHub password
+
+
 ✅ Outcome
 Once you push to GitHub:
-
 The workflow will build your Docker image
-
 Push it to DockerHub automatically 🎉
 
