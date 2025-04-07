@@ -5,10 +5,11 @@ Tools Used: GitHub, GitHub Actions, Docker
 ✅ Step 1: Clone the Sample Node.js App
 
 git clone https://github.com/heroku/node-js-sample
+
 cd node-js-sample
 
 ✅ Step 2: Create a Dockerfile
-Create a file named Dockerfile
+Create a file named  nano Dockerfile
 
 FROM node:16
 
@@ -28,6 +29,7 @@ CMD ["node", "index.js"]
 ✅ Step 3: Build and Run Docker Container
 
 docker build -t my-node-app .
+
 docker run -p 5000:5000 my-node-app
 
 Test in browser: http://localhost:5000
@@ -37,12 +39,13 @@ Test in browser: http://localhost:5000
 Create the folder and workflow file:
 
 mkdir -p .github/workflows
+
 touch .github/workflows/main.yml
+
 Add the following to .github/workflows/main.yml:
 
 yaml
 name: CI/CD Pipeline
-
 on:
   push:
     branches: [ main ]
@@ -80,6 +83,7 @@ Click "New repository secret" and add:
 
 Name	Value
 DOCKER_USERNAME	Your DockerHub username
+
 DOCKER_PASSWORD	Your DockerHub password
 
 
