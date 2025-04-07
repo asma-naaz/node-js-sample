@@ -1,13 +1,18 @@
-Automate Code Deployment Using CI/CD Pipeline (GitHub Actions)
-TOOLS : github & github action and Docker
+🚀 Automate Code Deployment Using CI/CD Pipeline (GitHub Actions)
+Tools Used: GitHub, GitHub Actions, Docker
 
-step:1
+✅ Step 1: Clone the Sample Node.js App
+bash
+Copy
+Edit
 git clone https://github.com/heroku/node-js-sample
 cd node-js-sample
+✅ Step 2: Create a Dockerfile
+Create a file named Dockerfile:
 
-step:2 
-create a docker file 
-nano dockerfile
+Dockerfile
+Copy
+Edit
 # Use official Node.js image
 FROM node:16
 
@@ -24,21 +29,29 @@ COPY . .
 # App runs on port 5000
 EXPOSE 5000
 
-# Command to run the app    #index.js is the main file in this repo  #5000 is the port this app uses
+# Command to run the app
 CMD ["node", "index.js"]
-
-step:3 
-Build and Run Docker Container 
+✅ Step 3: Build and Run Docker Container
+bash
+Copy
+Edit
 docker build -t my-node-app .
 docker run -p 5000:5000 my-node-app
+Test in browser: http://localhost:5000
 
-test : http://localhost:5000
+✅ Step 4: Set Up GitHub Actions for CI/CD
+Create the folder and workflow file:
 
-step:4 
-GitHub Actions for CI/CD 
-✅ 1. Create this folder in your repo:
-mkdir -p .github/workflows/
+bash
+Copy
+Edit
+mkdir -p .github/workflows
 touch .github/workflows/main.yml
+Add the following to .github/workflows/main.yml:
+
+yaml
+Copy
+Edit
 name: CI/CD Pipeline
 
 on:
@@ -68,25 +81,20 @@ jobs:
         context: .
         push: true
         tags: <your-dockerhub-username>/nodejs-demo-app:latest
-
-step:5 
-Add DockerHub Credentials to GitHub Secrets
-Go to your repo on GitHub:
+✅ Step 5: Add DockerHub Credentials to GitHub Secrets
+Go to your GitHub repository:
 
 Click Settings > Secrets and variables > Actions
-Click "New repository secret"
 
-Add two secrets:
+Click "New repository secret" and add:
+
 Name	Value
-DOCKER_USERNAME	your DockerHub username
-DOCKER_PASSWORD	your DockerHub password
+DOCKER_USERNAME	Your DockerHub username
+DOCKER_PASSWORD	Your DockerHub password
+✅ Outcome
+Once you push to GitHub:
 
-✅ Once you push this to GitHub, GitHub Actions will automatically:
+The workflow will build your Docker image
 
-Build the Docker image
-
-Push it to DockerHub
-
-
-
+Push it to DockerHub automatically 🎉
 
